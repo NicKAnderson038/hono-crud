@@ -1,16 +1,16 @@
-// import { z } from 'zod'
-import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import {
+    boolean,
+    date,
+    integer,
+    numeric,
     pgTable,
     serial,
-    boolean,
-    varchar,
-    date,
-    numeric,
     text,
     timestamp,
-    integer,
+    varchar,
 } from 'drizzle-orm/pg-core'
+// import { z } from 'zod'
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 
 // export const tableSchema = z.object({
 //     id: z.number().int().positive().min(1),

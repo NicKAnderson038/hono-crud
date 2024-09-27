@@ -1,6 +1,6 @@
 import { zValidator } from '@hono/zod-validator'
-import { z } from 'zod'
 import { validator } from 'hono/validator'
+import { z } from 'zod'
 
 const zodErrorResponse = (result, c) => {
     const { error, success } = result

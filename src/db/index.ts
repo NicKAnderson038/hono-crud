@@ -1,11 +1,11 @@
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { Pool } from 'pg'
 import {
-    DB_PORT,
     DB_HOST,
-    DB_USERNAME,
-    DB_PASSWORD,
     DB_NAME,
+    DB_PASSWORD,
+    DB_PORT,
+    DB_USERNAME,
 } from '../../env.js'
 
 // const { Pool } = pkg

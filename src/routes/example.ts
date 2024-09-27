@@ -1,15 +1,15 @@
-import { Hono } from 'hono'
-import { z } from 'zod'
-import { HTTPException } from 'hono/http-exception'
 import { OpenAPIHono, createRoute } from '@hono/zod-openapi'
-import { eq, lt, gte, ne, sql } from 'drizzle-orm'
+import { eq, gte, lt, ne, sql } from 'drizzle-orm'
+import { Hono } from 'hono'
+import { HTTPException } from 'hono/http-exception'
+import { z } from 'zod'
+import { BASE_PATH } from '../../env'
 import { db } from '../db/index'
-import { zValidatorJson, response200 } from '../utils/responseHandler.js'
 import {
     example as exampleTable,
     selectExampleSchema,
 } from '../db/schemas/example'
-import { BASE_PATH } from '../../env'
+import { response200, zValidatorJson } from '../utils/responseHandler.js'
 
 export const example = new Hono()
     // .get('/', c => { throw new HTTPException(403, { message: 'Custom error message' })})

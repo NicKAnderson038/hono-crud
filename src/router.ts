@@ -1,10 +1,10 @@
-import { Hono } from 'hono'
 import { OpenAPIHono } from '@hono/zod-openapi'
+import { Hono } from 'hono'
 import { basicAuth } from 'hono/basic-auth'
-import { example, exampleDoc } from './routes/example'
+import { BASE_PATH } from '../env'
 import { article } from './routes/article'
 import { book } from './routes/book'
-import { BASE_PATH } from '../env'
+import { example, exampleDoc } from './routes/example'
 
 const ROUTES = [
     ['/example', example, exampleDoc],

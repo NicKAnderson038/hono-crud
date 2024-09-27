@@ -1,12 +1,12 @@
-import { z } from 'zod'
-import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import {
-	pgTable,
-	serial,
-	varchar,
-	numeric,
-	timestamp,
+    numeric,
+    pgTable,
+    serial,
+    timestamp,
+    varchar,
 } from 'drizzle-orm/pg-core'
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
+import { z } from 'zod'
 
 export const article = pgTable('article_table', {
     id: serial('id').primaryKey(),
@@ -17,10 +17,10 @@ export const article = pgTable('article_table', {
 })
 
 export const insertArticleSchema = createInsertSchema(article, {
-	number: z.number()
+    number: z.number(),
 })
 
 export const selectArticleSchema = createSelectSchema(article, {
-	id: z.number(),
-	number: z.number().optional(),
+    id: z.number(),
+    number: z.number().optional(),
 })

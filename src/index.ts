@@ -1,16 +1,16 @@
 import { serve } from '@hono/node-server'
-import { Hono } from 'hono'
-import { z } from 'zod'
-import { OpenAPIHono, createRoute } from '@hono/zod-openapi'
 import { swaggerUI } from '@hono/swagger-ui'
-import { logger } from 'hono/logger'
+import { OpenAPIHono, createRoute } from '@hono/zod-openapi'
+import { Hono } from 'hono'
 import { etag } from 'hono/etag'
-import { poweredBy } from 'hono/powered-by'
 import { HTTPException } from 'hono/http-exception'
+import { logger } from 'hono/logger'
+import { poweredBy } from 'hono/powered-by'
 import { prettyJSON } from 'hono/pretty-json' //! TODO: doesn't appear to be working
 import statusCodes from 'http-status'
-import { routes, docs } from './router'
+import { z } from 'zod'
 import { HONO_PORT } from '../env'
+import { docs, routes } from './router'
 
 const app = new OpenAPIHono()
 
@@ -59,8 +59,7 @@ app.onError((error, c) => {
                         statusCodes[
                             `${status}_MESSAGE` as keyof typeof statusCodes
                         ],
-                    message:
-                        statusCodes[status as keyof typeof statusCodes],
+                    message: statusCodes[status as keyof typeof statusCodes],
                 },
                 message: statusCodes[status as keyof typeof statusCodes],
                 success: false,
@@ -85,14 +84,14 @@ app.doc('/doc', {
     info: {
         version: '1.0.0',
         title: 'Hono Example',
-    }
+    },
 })
 
 app.route('/', routes)
 app.route('/', docs)
 
 console.log('\x1b[33m%s\x1b[0m', `Server is running on port: ${HONO_PORT} \n`)
-console.log('\x1b[32m%s\x1b[0m', "Swagger Docs 🔗")
+console.log('\x1b[32m%s\x1b[0m', 'Swagger Docs 🔗')
 console.log('\x1b[4m%s\x1b[0m', `http://localhost:${HONO_PORT}/ui`, '\n')
 
 serve({
