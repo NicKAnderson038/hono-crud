@@ -77,7 +77,7 @@ export const exampleDoc = new OpenAPIHono()
         }),
         (c: { json: (arg0: {}) => any }) => {
             return c.json({
-                id: '1',
+                id: 1,
                 email: 'email@mail.com',
                 firstName: 'John',
                 middleName: 'Doe',
