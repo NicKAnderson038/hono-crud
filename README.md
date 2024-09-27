@@ -47,11 +47,11 @@ src/
 │   │   └── *.ts # Drizzle-Zod DB schemas
 │   └── index.ts # DB connection
 ├── routes/
-│   └── *.ts # '/UNIQUE_ROUTE/*' per file. Contains drizzle ORM queries & swagger docs (business logic)
+│   └── *.ts # '/UNIQUE_ROUTE/*' per file. Contains drizzle ORM queries & swagger docs
 ├── utils/
 │   └── responseHandle.js # Zod errors & successful response
 ├── index.ts # app root
-└── router.ts # combine routes and conditionally set auth middleware ex: public or private routes
+└── router.ts # combine routes & conditionally set auth middleware: public/private routes
 .env
 .gitignore
 .nvmrc
