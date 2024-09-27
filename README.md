@@ -66,7 +66,7 @@ tsconfig.json
 
 ## Package Dependencies & Tools
 
-<div style="display:flex;flex-direction:column">
+<div>
     <div style="display:flex;flex-direction:column; align-items:center;">
         <a href="https://hono.dev/" targer="_blank">
             <img width="300" src="https://hono.dev/images/hono-kawaii.png" alt="Hono.js kawaii logo"/>
