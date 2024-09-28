@@ -1,7 +1,7 @@
 {
     "name": "hono-crud",
     "scripts": {
-        "dev": "tsx watch --env-file=.env src/index.ts",
+        "dev": "tsx watch --env-file=.env src/server.ts",
         "lint": "npx @biomejs/biome check --write",
         "db-generate": "drizzle-kit generate --config=drizzle.config.ts",
         "db-migrate": "node --env-file=.env -r ./migrate.cjs",

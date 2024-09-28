@@ -44,14 +44,14 @@ npm run dev
 src/
 ├── db/
 │   ├── schemas/
-│   │   └── *.ts # Drizzle-Zod DB schemas
+│   │   └── *.ts # Drizzle-Zod Database schemas
 │   └── index.ts # DB connection
 ├── routes/
 │   └── *.ts # '/UNIQUE_ROUTE/*' per file. Contains drizzle ORM queries & swagger docs
 ├── utils/
 │   └── responseHandle.js # Zod errors & successful response
-├── index.ts # app root
-└── router.ts # combine routes & conditionally set auth middleware: public/private routes
+├── router.ts # combine routes & conditionally set auth middleware: public/private routes
+└── server.ts # app root
 .env
 .gitignore
 .nvmrc

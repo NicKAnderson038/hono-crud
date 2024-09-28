@@ -8,11 +8,9 @@ import {
     DB_USERNAME,
 } from '../../env.js'
 
-// const { Pool } = pkg
-
 // const pool = new Pool({
-//   connectionString: "postgres://user:password@host:port/db",
-//   connectionString: `postgres://${process.env.POSTGRES_USERNAME}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`,
+//   connectionString: "postgres://user:password@host:port/db_name",
+//   connectionString: `postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
 // });
 
 /* or */
