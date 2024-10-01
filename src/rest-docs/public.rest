@@ -1,0 +1,16 @@
+@hostname=localhost
+@port=5544
+@basePath=/api/v1
+@host=http://{{hostname}}:{{port}}{{basePath}}
+
+@route = /example
+
+GET {{host}}{{route}}
+Accept: application/json
+
+###
+
+GET {{host}}{{route}}/db
+Accept: application/json
+
+###

@@ -21,3 +21,30 @@ Accept: application/json
 authorization: {{basicAuth}}
 
 ###
+
+POST {{host}}{{route}}
+content-type: application/json
+authorization: {{basicAuth}}
+
+{ "number": 88765, "book": "The Great Gatsby" }
+
+###
+
+PUT {{host}}{{route}}
+Accept: application/json
+content-type: application/json
+authorization: {{basicAuth}}
+
+{
+    "id": 2,
+    "book": "Memoirs of a Geisha"
+}
+
+###
+
+DELETE  {{host}}{{route}}/{{param}}
+Accept: application/json
+content-type: application/json
+authorization: {{basicAuth}}
+
+###
