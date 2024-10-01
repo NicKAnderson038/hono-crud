@@ -1,12 +1,12 @@
 import { eq, gte, lt, ne, sql } from 'drizzle-orm'
 import { Hono } from 'hono'
-import { db } from '../db/index.js'
+import { db } from '../../db/index.js'
 import {
     article as articleTable,
     insertArticleSchema,
     selectArticleSchema,
-} from '../db/schemas/article'
-import { response200, zValidatorJson } from '../utils/responseHandler.js'
+} from '../../db/schemas/article.js'
+import { response200, zValidatorJson } from '../../utils/responseHandler.js'
 
 /**
  * How Pick works. Zod only validates those properties against the schema.
@@ -24,7 +24,7 @@ const schema = selectArticleSchema // TODO: where can i use this? why have it?
 export const article = new Hono()
     .get('/', async c => {
         const data = await db.select().from(articleTable)
-        return c.json(response200(data, `Get All Records`))
+        return c.json(response200(data, 'Get All Records'))
     })
     .get('/:id{[0-9]+}', async c => {
         const id = Number.parseInt(c.req.param('id'))
@@ -86,8 +86,8 @@ export const article = new Hono()
             // throw new Error(err)
             if (err instanceof Error) {
                 throw new Error(err.message)
-            } else {
-                throw new Error('An unknown error occurred')
             }
+            throw new Error('An unknown error occurred')
+            
         }
     })

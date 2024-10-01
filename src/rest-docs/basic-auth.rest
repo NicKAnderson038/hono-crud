@@ -1,0 +1,23 @@
+# book & aritcle basic endpoints
+
+@hostname=localhost
+@port=5544
+@basePath=/api/v1
+@host=http://{{hostname}}:{{port}}{{basePath}}
+
+@basicAuth = Basic hono:acoolproject
+# @route = /article
+@route = /book
+
+GET {{host}}{{route}}
+Accept: application/json
+authorization: {{basicAuth}}
+
+###
+
+@param = 1
+GET {{host}}{{route}}/{{param}}
+Accept: application/json
+authorization: {{basicAuth}}
+
+###

@@ -1,0 +1,21 @@
+# In-memory Blacklist Tokens. Realtime invalidation of tokens.
+@hostname=localhost
+@port=5544
+@basePath=/api/v1
+@host=http://{{hostname}}:{{port}}{{basePath}}
+@bearerAuth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6IkFETUlOIiwidXNlcklkIjoiMzE0QVdMOTkyIiwiaWF0IjoxNTE2MjM5MDIyfQ.r1wtPy1felVuqT74gQ9AFKmffbReFHAZFmnlb3J_erM
+
+# Blacklist Admin Token (for 5 seconds)
+GET {{host}}/example/black-list-token
+Accept: application/json
+authorization: {{bearerAuth}}
+
+###
+
+
+# Check if Admin token is blacklisted
+GET {{host}}/admin/check-black-list
+Accept: application/json
+authorization: {{bearerAuth}}
+
+###

@@ -1,23 +1,22 @@
 import { serve } from '@hono/node-server'
 import { swaggerUI } from '@hono/swagger-ui'
-import { OpenAPIHono, createRoute } from '@hono/zod-openapi'
+import { OpenAPIHono } from '@hono/zod-openapi'
 import { Hono } from 'hono'
 import { etag } from 'hono/etag'
 import { HTTPException } from 'hono/http-exception'
 import { logger } from 'hono/logger'
 import { poweredBy } from 'hono/powered-by'
-import { prettyJSON } from 'hono/pretty-json' //! TODO: doesn't appear to be working
+// import { prettyJSON } from 'hono/pretty-json' //! TODO: doesn't appear to be working
 import statusCodes from 'http-status'
-import { z } from 'zod'
 import { HONO_PORT } from '../env'
-import { docs, routes } from './router'
+import { docs, routes } from './routes/router'
 
 const app = new OpenAPIHono()
 
 // Mount Builtin Middleware
 app.use('*', poweredBy())
 app.use('*', logger())
-app.use(prettyJSON()) //! TODO: doesn't appear to be working
+// app.use('*', prettyJSON()) //! TODO: doesn't appear to be working
 app.use('/etag/*', etag())
 
 // Custom Middleware
@@ -46,8 +45,7 @@ app.onError((error, c) => {
 
     if (error instanceof HTTPException) {
         const err = error.getResponse()
-        const { status } = err
-
+        const { status, message } = error
         return c.json(
             {
                 error: {
@@ -61,7 +59,7 @@ app.onError((error, c) => {
                         ],
                     message: statusCodes[status as keyof typeof statusCodes],
                 },
-                message: statusCodes[status as keyof typeof statusCodes],
+                message: message || statusCodes[status as keyof typeof statusCodes],
                 success: false,
             },
             status as any
@@ -78,7 +76,7 @@ app.onError((error, c) => {
     )
 })
 
-app.get('/ui', swaggerUI({ url: `/doc` }))
+app.get('/ui', swaggerUI({ url: '/doc' }))
 app.doc('/doc', {
     openapi: '3.1.0',
     info: {

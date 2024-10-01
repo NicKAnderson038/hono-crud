@@ -1,15 +1,16 @@
 import { OpenAPIHono, createRoute } from '@hono/zod-openapi'
-import { eq, gte, lt, ne, sql } from 'drizzle-orm'
+import { eq, gte, lt, ne, sql, desc } from 'drizzle-orm'
 import { Hono } from 'hono'
 import { HTTPException } from 'hono/http-exception'
 import { z } from 'zod'
-import { BASE_PATH } from '../../env'
-import { db } from '../db/index'
+import { BASE_PATH } from '../../../env.js'
+import { db } from '../../db/index'
 import {
     example as exampleTable,
     selectExampleSchema,
-} from '../db/schemas/example'
-import { response200, zValidatorJson } from '../utils/responseHandler.js'
+} from '../../db/schemas/example.js'
+import { response200, zValidatorJson } from '../../utils/responseHandler.js'
+import { ttlCache } from '../../utils/tokenBlackList.js'
 
 export const example = new Hono()
     // .get('/', c => { throw new HTTPException(403, { message: 'Custom error message' })})
@@ -39,6 +40,25 @@ export const example = new Hono()
     .get('/user-agent', c => {
         const userAgent = c.req.header('User-Agent')
         return c.text(`Your UserAgent is ${userAgent}`)
+    })
+    .get('/black-list-token', async c => {
+        const token = await `${c.req
+            .header('authorization')
+            ?.replace('Bearer ', '')}`
+        console.log(token)
+        console.log('SET CACHE SET CACHE SET CACHE SET CACHE')
+        ttlCache.set(token, 'JWT_TOKEN')
+        const payload = c.get('jwtPayload')
+
+        const [data] = await db
+            .select({
+                id: exampleTable.id,
+            })
+            .from(exampleTable)
+            .orderBy(desc(exampleTable.id)) // Assuming 'id' is your primary key or timestamp field
+            .limit(1)
+        ttlCache.max = 100 + data?.id
+        return c.json(payload)
     })
 
 export const exampleDoc = new OpenAPIHono()

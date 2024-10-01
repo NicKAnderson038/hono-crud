@@ -11,6 +11,7 @@ const EnvSchema = z.object({
         })
         .default('development'),
     BASE_PATH: z.string().min(7).default('/api/v0'),
+    JWT_SECRET_KEY: z.string().min(10).default('your-256-bit-secret'),
     HONO_PORT: z.coerce
         .number({
             description: portDescription,
@@ -35,6 +36,7 @@ export const {
     NODE_ENV,
     HONO_PORT,
     BASE_PATH,
+    JWT_SECRET_KEY,
     DB_USERNAME,
     DB_PASSWORD,
     DB_NAME,

@@ -38,6 +38,11 @@ npm run dev
 # Swagger Docs: http://localhost:<HONO_PORT>/ui
 ```
 
+5. Test Live Endpoints
+    - Install [http client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) vscode extension to live test endpoints with postman or thunderclient.
+    - Testable endpoints located under src/rest-docs/*
+
+
 ## Folder Structure
 
 ```bash
@@ -46,11 +51,18 @@ src/
 │   ├── schemas/
 │   │   └── *.ts # Drizzle-Zod Database schemas
 │   └── index.ts # DB connection
+├── rest-docs/
+│   └── *.rest # Live REST request examples for local testing
 ├── routes/
-│   └── *.ts # '/UNIQUE_ROUTE/*' per file. Contains drizzle ORM queries & swagger docs
+│   ├── protected/ 
+│   │   └── *.ts # '/UNIQUE_ROUTE/*' per file. Contains drizzle ORM queries & swagger docs
+│   ├── public/
+│   │   └── *.ts # '/UNIQUE_ROUTE/*' per file. Contains drizzle ORM queries & swagger docs
+│   └── router.ts # combine routes & conditionally set auth middleware: public/protected routes
 ├── utils/
-│   └── responseHandle.js # Zod errors & successful response
-├── router.ts # combine routes & conditionally set auth middleware: public/private routes
+│   ├── responseHandler.js # Zod errors & successful response
+│   ├── roleHandler.ts # role based middleware and individual route validation functions
+│   └── tokenBlackList.js # In-memory JWT cache for invalidated tokens.
 └── server.ts # app root
 .env
 .gitignore

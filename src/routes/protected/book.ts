@@ -1,8 +1,8 @@
 import { eq, gte, lt, ne, sql } from 'drizzle-orm'
 import { Hono } from 'hono'
-import { db } from '../db/index.js'
-import { book as bookTable, insertBookSchema } from '../db/schemas/book'
-import { response200, zValidatorJson } from '../utils/responseHandler.js'
+import { db } from '../../db/index.js'
+import { book as bookTable, insertBookSchema } from '../../db/schemas/book.js'
+import { response200, zValidatorJson } from '../../utils/responseHandler.js'
 
 const schemaPost = insertBookSchema.pick({ number: true, book: true })
 const schemaUpdate = insertBookSchema.pick({
@@ -14,7 +14,7 @@ const schemaUpdate = insertBookSchema.pick({
 export const book = new Hono()
     .get('/', async c => {
         const data = await db.select().from(bookTable)
-        return c.json(response200(data, `Get All Records`))
+        return c.json(response200(data, 'Get All Records'))
     })
     .get('/:id{[0-9]+}', async c => {
         const id = Number.parseInt(c.req.param('id'))
@@ -73,8 +73,8 @@ export const book = new Hono()
         } catch (err) {
             if (err instanceof Error) {
                 throw new Error(err.message)
-            } else {
-                throw new Error('An unknown error occurred')
-            }
+            } 
+            throw new Error('An unknown error occurred')
+            
         }
     })
