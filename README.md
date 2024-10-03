@@ -16,7 +16,7 @@ DB_USERNAME=<MY_USERNAME>
 DB_PASSWORD=<MY_PASSWORD>
 ```
 
-2. Run npm install
+2. Install npm dependencies
 
 ```bash
 npm i
@@ -25,21 +25,25 @@ npm i
 3. Generate migration scripts & perform migration
 
 ```bash
-npm run db:generate
-npm run db:migrate
+npm run db-generate
+npm run db-migrate
 ```
 
 4. Run dev server
 
 ```bash
-npm run dev
+# Node version > 22.6.x (supports the --experimental-strip-types flag)
+npm run dev-node
 
-# Check Data: http://localhost:<HONO_PORT>/api/v1
-
-# Swagger Docs: http://localhost:<HONO_PORT>/ui
+# Node version > 18.x
+npm run dev-tsx
 ```
 
-5. Test Live Endpoints
+5. Console output responses
+    - Check Data: `http://localhost:<HONO_PORT>/api/v1/example`
+    - Swagger Docs: `http://localhost:<HONO_PORT>/ui`
+
+6. Test Live Endpoints
     - Install [http client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) vscode extension to live test endpoints with postman or thunderclient.
     - Testable endpoints located under src/rest-docs/*
 

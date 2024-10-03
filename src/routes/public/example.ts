@@ -1,14 +1,14 @@
 import { OpenAPIHono, createRoute } from '@hono/zod-openapi'
-import { eq, gte, lt, ne, sql, desc } from 'drizzle-orm'
+import { desc, eq, gte, lt, ne, sql } from 'drizzle-orm'
 import { Hono } from 'hono'
 import { HTTPException } from 'hono/http-exception'
 import { z } from 'zod'
-import { BASE_PATH } from '../../../env.js'
-import { db } from '../../db/index'
+import { BASE_PATH } from '../../../env.ts'
+import { db } from '../../db/index.ts'
 import {
     example as exampleTable,
     selectExampleSchema,
-} from '../../db/schemas/example.js'
+} from '../../db/schemas/example.ts'
 import { response200, zValidatorJson } from '../../utils/responseHandler.js'
 import { ttlCache } from '../../utils/tokenBlackList.js'
 

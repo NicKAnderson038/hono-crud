@@ -1,5 +1,5 @@
-import { HTTPException } from 'hono/http-exception'
 import { createMiddleware } from 'hono/factory'
+import { HTTPException } from 'hono/http-exception'
 
 import { decode } from 'hono/jwt'
 

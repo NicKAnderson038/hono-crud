@@ -8,8 +8,8 @@ import { logger } from 'hono/logger'
 import { poweredBy } from 'hono/powered-by'
 // import { prettyJSON } from 'hono/pretty-json' //! TODO: doesn't appear to be working
 import statusCodes from 'http-status'
-import { HONO_PORT } from '../env'
-import { docs, routes } from './routes/router'
+import { HONO_PORT } from '../env.ts'
+import { docs, routes } from './routes/router.ts'
 
 const app = new OpenAPIHono()
 
@@ -59,7 +59,8 @@ app.onError((error, c) => {
                         ],
                     message: statusCodes[status as keyof typeof statusCodes],
                 },
-                message: message || statusCodes[status as keyof typeof statusCodes],
+                message:
+                    message || statusCodes[status as keyof typeof statusCodes],
                 success: false,
             },
             status as any

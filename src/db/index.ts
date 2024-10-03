@@ -1,12 +1,14 @@
 import { drizzle } from 'drizzle-orm/node-postgres'
-import { Pool } from 'pg'
+import pkg from 'pg'
 import {
     DB_HOST,
     DB_NAME,
     DB_PASSWORD,
     DB_PORT,
     DB_USERNAME,
-} from '../../env.js'
+} from '../../env.ts'
+
+const { Pool } = pkg
 
 // const pool = new Pool({
 //   connectionString: "postgres://user:password@host:port/db_name",

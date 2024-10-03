@@ -1,11 +1,11 @@
 import { eq, gte, lt, ne, sql } from 'drizzle-orm'
 import { Hono } from 'hono'
-import { db } from '../../db/index.js'
+import { db } from '../../db/index.ts'
 import {
     article as articleTable,
     insertArticleSchema,
     selectArticleSchema,
-} from '../../db/schemas/article.js'
+} from '../../db/schemas/article.ts'
 import { response200, zValidatorJson } from '../../utils/responseHandler.js'
 
 /**
@@ -88,6 +88,5 @@ export const article = new Hono()
                 throw new Error(err.message)
             }
             throw new Error('An unknown error occurred')
-            
         }
     })

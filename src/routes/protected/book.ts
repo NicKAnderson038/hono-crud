@@ -1,7 +1,7 @@
 import { eq, gte, lt, ne, sql } from 'drizzle-orm'
 import { Hono } from 'hono'
-import { db } from '../../db/index.js'
-import { book as bookTable, insertBookSchema } from '../../db/schemas/book.js'
+import { db } from '../../db/index.ts'
+import { book as bookTable, insertBookSchema } from '../../db/schemas/book.ts'
 import { response200, zValidatorJson } from '../../utils/responseHandler.js'
 
 const schemaPost = insertBookSchema.pick({ number: true, book: true })
@@ -73,8 +73,7 @@ export const book = new Hono()
         } catch (err) {
             if (err instanceof Error) {
                 throw new Error(err.message)
-            } 
+            }
             throw new Error('An unknown error occurred')
-            
         }
     })
