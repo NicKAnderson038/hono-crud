@@ -1,5 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { Hono } from 'hono'
+import type { Env, Schema } from 'hono'
 import { basicAuth } from 'hono/basic-auth'
 import { jwt, verify, decode } from 'hono/jwt'
 import type { JwtVariables } from 'hono/jwt'
@@ -36,9 +37,7 @@ for (const [path] of ROUTES) {
     if (path === '/admin') {
         // is token blacklisted?
         routes.use(`${path}/*`, async (c, next) => {
-            const token = `${c.req
-                .header('authorization')
-                ?.replace('Bearer ', '')}`
+            const token = `${c.req.header('authorization')?.replace('Bearer ', '')}`
             console.log(ttlCache.size) // How many rows are available in the cache
             if (ttlCache.has(token)) {
                 throw new HTTPException(401, { message: 'Blacklisted Token' })
@@ -79,13 +78,12 @@ for (const [path] of ROUTES) {
             })
         )
     }
-
 }
 
 // Binding All Routes
 for (const [path, route, doc] of ROUTES) {
-    routes.route(path as any, route as any)
+    routes.route(path as string, route as Hono<Env, Schema, string>)
     if (doc) {
-        docs.route(path as any, doc as any)
+        docs.route(path as string, doc as Hono<Env, Schema, string>)
     }
 }
