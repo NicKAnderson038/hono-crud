@@ -6,6 +6,7 @@
 # server
 HONO_PORT=<PORT_NUMBER>
 BASE_PATH='/api/v1'
+JWT_SECRET_KEY=your-256-bit-secret
 
 # database
 DB_HOST=localhost
