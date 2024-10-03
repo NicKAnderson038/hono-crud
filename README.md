@@ -23,6 +23,8 @@ npm i
 ```
 
 3. Generate migration scripts & perform migration
+    - This repo was configured for `Postgres`
+    - Create your `DB_NAME` before running migration scripts
 
 ```bash
 npm run db-generate
