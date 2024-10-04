@@ -46,8 +46,9 @@ npm run dev-tsx
     - Swagger Docs: `http://localhost:<HONO_PORT>/ui`
 
 6. Test Live Endpoints
-    - Install [http client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) vscode extension to live test endpoints with postman or thunderclient.
-    - Testable endpoints located under src/rest-docs/*
+    - Install [http client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) vscode extension to live test endpoints. Similar to postman or thunderclient.
+    - Testable endpoints located under `src/rest-docs/*.rest`.
+    - NOTE: update the variables in the `*.rest` files to match values set in `.env`.
 
 
 ## Folder Structure
