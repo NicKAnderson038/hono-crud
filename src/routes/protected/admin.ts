@@ -13,7 +13,7 @@ export const admin = new Hono()
     // })
     .get('/check-black-list', async c => {
         const payload = c.get('jwtPayload')
-        console.log(ttlCache.max)
+        console.log('Total number of Rows available in Cache:', ttlCache.max)
         console.log(payload)
         return c.json(payload)
     })

@@ -7,7 +7,7 @@ import { decode, jwt, verify } from 'hono/jwt'
 import type { JwtVariables } from 'hono/jwt'
 import { BASE_PATH, JWT_SECRET_KEY } from '../../env.ts'
 import { adminRoleMiddleware } from '../utils/roleHandler.ts'
-import { ttlCache } from '../utils/tokenBlackList.js'
+import { getCacheSnapshot, ttlCache } from '../utils/tokenBlackList.js'
 import { admin } from './protected/admin.ts'
 import { article } from './protected/article.ts'
 import { book } from './protected/book.ts'
@@ -38,7 +38,8 @@ for (const [path] of ROUTES) {
         // is token blacklisted?
         routes.use(`${path}/*`, async (c, next) => {
             const token = `${c.req.header('authorization')?.replace('Bearer ', '')}`
-            console.log(ttlCache.size) // How many rows are available in the cache
+            console.log('Number of items in Cache Blacklist:', ttlCache.size)
+            console.log('Cache Blacklist Snapshot: \n', getCacheSnapshot())
             if (ttlCache.has(token)) {
                 throw new HTTPException(401, { message: 'Blacklisted Token' })
             }
