@@ -10,7 +10,7 @@ import { adminRoleMiddleware } from '../utils/roleHandler.ts'
 import { getCacheSnapshot, ttlCache } from '../utils/tokenBlackList.js'
 import { admin } from './protected/admin.ts'
 import { article } from './protected/article.ts'
-import { book } from './protected/book.ts'
+import { book } from './protected/book.js'
 import { example, exampleDoc } from './public/example.ts'
 
 const ROUTES = [
