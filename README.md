@@ -62,10 +62,12 @@ src/
 ├── rest-docs/
 │   └── *.rest # Live REST request examples for local testing
 ├── routes/
-│   ├── protected/ 
-│   │   └── *.ts # '/UNIQUE_ROUTE/*' per file. Contains drizzle ORM queries & swagger docs
-│   ├── public/
-│   │   └── *.ts # '/UNIQUE_ROUTE/*' per file. Contains drizzle ORM queries & swagger docs
+│   ├── protected/ # '/UNIQUE_ROUTE/*' per file. Contains drizzle ORM queries & swagger docs
+│   │   ├── *.js
+│   │   └── *.ts
+│   ├── public/ # '/UNIQUE_ROUTE/*' per file. Contains drizzle ORM queries & swagger docs
+│   │   ├── *.js
+│   │   └── *.ts
 │   └── router.ts # combine routes & conditionally set auth middleware: public/protected routes
 ├── utils/
 │   ├── responseHandler.js # Zod errors & successful response
