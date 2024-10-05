@@ -1,7 +1,11 @@
 import { eq, gte, lt, ne, sql } from 'drizzle-orm'
 import { Hono } from 'hono'
 import { db } from '../../db/index.ts'
-import { book as bookTable, insertBookSchema } from '../../db/schemas/book.ts'
+import {
+    book as bookTable,
+    insertBookSchema,
+    selectBookSchema,
+} from '../../db/schemas/book.ts'
 import { response200, zValidatorJson } from '../../utils/responseHandler.js'
 
 const schemaPost = insertBookSchema.pick({ number: true, book: true })
@@ -9,6 +13,13 @@ const schemaUpdate = insertBookSchema.pick({
     id: true,
     number: true,
     book: true,
+})
+const schemaGetAll = selectBookSchema.pick({
+    id: true,
+    number: true,
+    book: true,
+    created_at: true,
+    updated_at: true,
 })
 
 export const book = new Hono()
