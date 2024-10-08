@@ -26,7 +26,7 @@ export const example = new Hono()
             })
             .from(exampleTable)
             .where(eq(exampleTable.role, 'CUSTODIAN'))
-        return c.json(data)
+        return c.json(response200(data, 'Get table response example'))
     })
     .get('/redirect', c => c.redirect(BASE_PATH))
     // ETag
