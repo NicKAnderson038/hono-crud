@@ -87,7 +87,13 @@ export const exampleDoc = new OpenAPIHono()
                 200: {
                     content: {
                         'application/json': {
-                            schema: selectExampleSchema,
+                            schema: selectExampleSchema.pick({
+                                id: true,
+                                email: true,
+                                first_name: true,
+                                middle_name: true,
+                                last_name: true,
+                            }),
                         },
                     },
                     description: 'Get table response',
