@@ -7,8 +7,8 @@
         "lint": "npx @biomejs/biome check --write",
         "db-generate": "drizzle-kit generate --config=drizzle.config.ts",
         "db-migrate": "node --env-file=.env -r ./migrate.cjs",
-        "packages-check": "npx npm-check-updates",
-        "packages-update": "npx npm-check-updates -i --format group"
+        "packages:check": "npx npm-check-updates",
+        "packages:update": "npx npm-check-updates -i --format group"
     },
     "dependencies": {
         "@hono/node-server": "^1.13.2",
